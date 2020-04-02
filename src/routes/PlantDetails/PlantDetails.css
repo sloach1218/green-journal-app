@@ -1,0 +1,10 @@
+.Plant__details{
+  padding: 20px;
+}
+.Plant__details img{
+  max-height: 300px;
+  max-width: 300px;
+}
+.Plant__details button{
+  float:right;
+}

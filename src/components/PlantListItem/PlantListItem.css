@@ -1,0 +1,13 @@
+.PlantListItem__container{
+    margin: 20px;
+    padding:5px;
+    background-color: lightgreen;
+}
+.PlantListItemImage_container{
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+.PlantListItemImage_container img{
+    height:100%;
+}
