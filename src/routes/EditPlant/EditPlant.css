@@ -1,0 +1,25 @@
+.editPlantPage {
+    text-align: center;
+}
+.editPlantPage form{
+    display: inline-block;
+    text-align: left;
+    margin-top: 20px;
+  }
+.editPlantPage button, .editPlantPage input, .editPlantPage textarea , .editPlantPage select  {
+    width: 100%;
+    border: 1px solid grey;
+    padding: 6px;
+    margin-bottom: 5px;
+}
+#editPlantForm__water, #editPlantForm__fertilize, #editPlantForm__repot {
+    display: inline-block;
+    width: auto;
+}
+.editPlantPage textarea{
+    min-height: 75px;
+}
+.editPlantPage .BacktoPlant{
+    display: block;
+    margin-top: 5px;
+}

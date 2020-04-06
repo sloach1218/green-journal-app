@@ -5,6 +5,6 @@
   max-height: 300px;
   max-width: 300px;
 }
-.Plant__details button{
+.Plant__details a{
   float:right;
 }

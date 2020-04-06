@@ -1,40 +1,50 @@
 import React from 'react';
-import './AddPlant.css';
+import { Link } from 'react-router-dom';
+import './EditPlant.css';
 import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
+import PlantsContext from '../../Context'
+import {getPlant} from '../../appHelpers'
 import ValidationError from '../../ValidationError';
 
 
-class AddPlant extends React.Component {
+
+
+class EditPlant extends React.Component {
+  static contextType = PlantsContext
+  
+  
+  
   constructor(props){
     super(props);
+    const plant = this.props.location.state;
     this.state = {
       name:{
-        value: "",
+        value: plant.name,
         touched: false
       },
       type:{
-        value: "",
+        value: plant.type,
         touched:false
       },
       description:{
-        value: "",
+        value: plant.description,
         touched:false
       },
       sunlight:{
-        value: "Bright",
+        value: plant.sunlight,
         touched:false
       },
       water:{
-        value: "",
+        value: plant.water,
         touched:false
       },
       fertilize:{
-        value: "",
+        value: plant.fertilize,
         touched:false
       },
       repot:{
-        value: "",
+        value: plant.repot,
         touched:false
       },
     };
@@ -117,59 +127,65 @@ class AddPlant extends React.Component {
   }
 
   render(){
+    const plant = this.props.location.state;
+
     return (
-      <div  className="addPlantPage">
+      <div  className="editPlantPage">
         <Header />
         <Nav />
-        <form className='AddPlantForm' onSubmit={e => this.handleSubmit(e)}>
-            <legend>Add a new plant</legend>
+        <Link to={`/plant/${plant.id}`} className='BacktoPlant'>Back to Plant Details</Link>
+        <form className='editPlantForm' onSubmit={e => this.handleSubmit(e)}>
+            <legend>Update your plant's details</legend>
             <div className='name'>
-              <label htmlFor='AddPlantForm__name'>
+              <label htmlFor='editPlantForm__name'>
                 Name: 
               </label>
               <input
                 name='name'
                 type='text'
                 required
-                id='AddPlantForm__name'
+                id='editPlantForm__name'
                 onChange={e => this.updateName(e.target.value)}
                 aria-label="Name" 
-                aria-required="true" />
+                aria-required="true"
+                value={this.state.name.value} />
               {this.state.name.touched && (<ValidationError message={this.validateName()} />)}
             </div>
             <div className='type'>
-              <label htmlFor='AddPlantForm__type'>
+              <label htmlFor='editPlantForm__type'>
                 Plant Type: 
               </label>
               <input
                 name='type'
                 type='text'
                 required
-                id='AddPlantForm__type'
+                id='editPlantForm__type'
                 onChange={e => this.updateType(e.target.value)}
                 aria-label="type" 
-                aria-required="true" />
+                aria-required="true"
+                value={this.state.type.value} />
               {this.state.type.touched && (<ValidationError message={this.validateType()} />)}
             </div>
             <div className='description'>
-              <label htmlFor='AddPlantForm__description'>
+              <label htmlFor='editPlantForm__description'>
                 Description/Care Details: 
               </label>
               <textarea
                 name='description'
                 type='text'
                 required
-                id='AddPlantForm__description'
+                id='editPlantForm__description'
                 onChange={e => this.updateDescription(e.target.value)}
                 aria-label="description" 
-                aria-required="true" />
+                aria-required="true"
+                value={this.state.description.value} />
                 {this.state.description.touched && (<ValidationError message={this.validateDescription()} />)}
             </div>
             <div className='sunlight'>
-              <label htmlFor='AddPlantForm__sunlight'>
+              <label htmlFor='editPlantForm__sunlight'>
                 Sunlight Preferred: 
               </label>
-              <select name='AddPlantForm__sunlight' value={this.state.sunlight.value} onChange={e => this.updateSunlight(e.target.value)}>
+              <select name='editPlantForm__sunlight' value={this.state.sunlight.value} onChange={e => this.updateSunlight(e.target.value)}>
                   <option value="Low" key="Low">Low/full shade</option>
                   <option value="Partial" key="Partial">Partial sunlight and shade</option>
                   <option value="Bright" key="Bright">Bright without direct sun</option>
@@ -177,54 +193,54 @@ class AddPlant extends React.Component {
               </select>
             </div>
             <div className='water'>
-              <label htmlFor='AddPlantForm__water'>
+              <label htmlFor='editPlantForm__water'>
                 Water every: 
               </label>
               <input
                 name='water'
                 type='number'
                 required
-                id='AddPlantForm__water'
+                id='editPlantForm__water'
                 onChange={e => this.updateWater(e.target.value)}
                 aria-label="water" 
                 aria-required="true"
-                placeholder="7" />
+                value={this.state.water.value} />
                 <span> Days</span>
               {this.state.water.touched && (<ValidationError message={this.validateWater()} />)}
             </div>
             <div className='fertilize'>
-              <label htmlFor='AddPlantForm__fertilize'>
+              <label htmlFor='editPlantForm__fertilize'>
                 Fertilize every: 
               </label>
               <input
                 name='fertilize'
                 type='number'
                 required
-                id='AddPlantForm__fertilize'
+                id='editPlantForm__fertilize'
                 onChange={e => this.updateFertilizer(e.target.value)}
                 aria-label="fertilize" 
                 aria-required="true"
-                placeholder="2" />
+                value={this.state.fertilize.value} />
                 <span> Weeks</span>
               {this.state.fertilize.touched && (<ValidationError message={this.validateFertilizer()} />)}
             </div>
             <div className='repot'>
-              <label htmlFor='AddPlantForm__repot'>
+              <label htmlFor='editPlantForm__repot'>
                 Repot every: 
               </label>
               <input
                 name='repot'
                 type='number'
                 required
-                id='AddPlantForm__repot'
+                id='editPlantForm__repot'
                 onChange={e => this.updateRepot(e.target.value)}
                 aria-label="repot" 
                 aria-required="true"
-                placeholder="6" />
+                value={this.state.repot.value} />
                 <span> Months</span>
               {this.state.repot.touched && (<ValidationError message={this.validateRepot()} />)}
             </div>
-            <button type='submit'>Add Plant</button>
+            <button type='submit'>Update Plant Details</button>
   
         </form>
       </div>
@@ -232,4 +248,4 @@ class AddPlant extends React.Component {
   }
 }
 
-export default AddPlant;
+export default EditPlant;

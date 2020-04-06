@@ -1,3 +1,30 @@
 .landingPageMain {
   text-align: center;
 }
+.landingPageMain header{
+  padding: 30px;
+  
+}
+section {
+  padding: 30px;
+}
+section:last-of-type {
+  background-color: whitesmoke;
+}
+.landingPageMain form{
+  display: inline-block;
+  text-align: left;
+}
+.landingPageMain button{
+  display: block;
+  background-color: darkolivegreen;
+  padding: 10px;
+  margin: 0 auto;
+  
+}
+.landingPageMain form input, .landingPageMain form button{
+  width:100%;
+  border: 1px solid grey;
+  padding: 6px;
+  margin-bottom: 5px;
+}

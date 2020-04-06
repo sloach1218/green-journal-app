@@ -3,11 +3,11 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import dummyStore from '../../dummyStore'
 import LandingPage from '../../routes/LandingPage/LandingPage';
-import LoginPage from '../../routes/LoginPage/LoginPage';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import HomePage from '../../routes/HomePage/HomePage';
 import AddPlant from '../../routes/AddPlant/AddPlant';
 import PlantDetails from '../../routes/PlantDetails/PlantDetails';
+import EditPlant from '../../routes/EditPlant/EditPlant';
 import Context from '../../Context';
 
 
@@ -42,11 +42,6 @@ class App extends React.Component  {
                     component={LandingPage}
                   />
             <Route
-                    exact
-                    path={'/login'}
-                    component={LoginPage}
-                  />
-            <Route
                     path={'/register'}
                     component={RegistrationPage}
                   />
@@ -61,6 +56,10 @@ class App extends React.Component  {
             <Route
                     path={'/plant/:plantId'}
                     component={PlantDetails}
+                  />
+            <Route
+                    path={'/edit-plant-details/:plantId'}
+                    component={EditPlant}
                   />
         </Switch>
         </Context.Provider>
