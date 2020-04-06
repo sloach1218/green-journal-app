@@ -37,6 +37,10 @@ class AddPlant extends React.Component {
         value: "",
         touched:false
       },
+      image:{
+        value: "",
+        touched:false
+      },
     };
   }
   updateName(name) {
@@ -59,6 +63,9 @@ class AddPlant extends React.Component {
   }
   updateRepot(repot) {
     this.setState({repot: { value: repot, touched:true }});
+  }
+  updateImage(image) {
+    this.setState({image: { value: image, touched:true }});
   }
 
   validateName(){
@@ -223,6 +230,19 @@ class AddPlant extends React.Component {
                 placeholder="6" />
                 <span> Months</span>
               {this.state.repot.touched && (<ValidationError message={this.validateRepot()} />)}
+            </div>
+            <div className='profileImg'>
+              <label htmlFor='AddPlantForm__profileImg'>
+                Upload a profile image: 
+              </label>
+              <input
+                name='image'
+                type='file'
+                id='AddPlantForm__image'
+                onChange={e => this.updateImage(e.target.value)}
+                aria-label="image" 
+                aria-required="true"
+                />
             </div>
             <button type='submit'>Add Plant</button>
   
