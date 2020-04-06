@@ -28,3 +28,11 @@ section:last-of-type {
   padding: 6px;
   margin-bottom: 5px;
 }
+.landingPageMain .registerBtn{
+  background-color: darkolivegreen;
+  padding: 8px 12px;
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: black;
+}

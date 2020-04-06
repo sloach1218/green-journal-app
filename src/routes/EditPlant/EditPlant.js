@@ -4,7 +4,6 @@ import './EditPlant.css';
 import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import PlantsContext from '../../Context'
-import {getPlant} from '../../appHelpers'
 import ValidationError from '../../ValidationError';
 
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import './LandingPage.css';
 import ValidationError from '../../ValidationError';
 
@@ -53,7 +54,7 @@ class LandingPage extends React.Component {
         <section>
           <h3>Your plant's diary</h3>
           <p>The Green Journal helps you keep track of your plant babies. Create a profile for each plant that saves care instructions, shows reminders and logs progress as they grow.</p>
-          <button>Create an Account</button>
+          <Link to={`/register`} className='registerBtn'>Create an Account</Link>
         </section>
         <section>
             <form className="login-form" onSubmit={e => this.handleSubmit(e)}>

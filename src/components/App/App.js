@@ -24,7 +24,6 @@ class App extends React.Component  {
   
   
   
-  
   render(){
     const contextValue = {
       plants: this.state.plants,
