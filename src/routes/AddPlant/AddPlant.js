@@ -3,6 +3,7 @@ import './AddPlant.css';
 import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import ValidationError from '../../ValidationError';
+import PlantApiService from '../../services/plant-api-service';
 
 
 class AddPlant extends React.Component {
@@ -53,6 +54,7 @@ class AddPlant extends React.Component {
     this.setState({description: { value: description, touched:true }});
   }
   updateSunlight(sunlight) {
+    console.log(sunlight)
     this.setState({sunlight: { value: sunlight, touched:true }});
   }
   updateWater(water) {
@@ -120,7 +122,37 @@ class AddPlant extends React.Component {
 
   handleSubmit = ev => {
     ev.preventDefault()
-    console.log('submitted!')
+
+    const { name, type, description, sunlight, water, fertilize, repot, image  } = ev.target
+    
+    const imageFiller = image.value || 'https://live.staticflickr.com/65535/48245873492_100da3b527_b.jpg'
+    
+    this.setState({ error: null })
+    PlantApiService.postPlant({
+      name: name.value,
+      type: type.value,
+      description: description.value,
+      sunlight: sunlight.value,
+      water: water.value,
+      fertilize: fertilize.value,
+      repot: repot.value,
+      image: imageFiller,
+    })
+      .then(plant => {
+        name.value = ''
+        type.value = ''
+        description.value = ''
+        sunlight.value = ''
+        water.value = ''
+        fertilize.value = ''
+        repot.value = ''
+        window.location.href = '/home'
+      })
+      .catch(res => {
+        this.setState({ error: res.error })
+      })
+
+
   }
 
   render(){
@@ -176,7 +208,7 @@ class AddPlant extends React.Component {
               <label htmlFor='AddPlantForm__sunlight'>
                 Sunlight Preferred: 
               </label>
-              <select name='AddPlantForm__sunlight' value={this.state.sunlight.value} onChange={e => this.updateSunlight(e.target.value)}>
+              <select name='sunlight' value={this.state.sunlight.value} onChange={e => this.updateSunlight(e.target.value)}>
                   <option value="Low" key="Low">Low/full shade</option>
                   <option value="Partial" key="Partial">Partial sunlight and shade</option>
                   <option value="Bright" key="Bright">Bright without direct sun</option>
