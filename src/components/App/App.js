@@ -9,6 +9,7 @@ import AddPlant from '../../routes/AddPlant/AddPlant';
 import PlantDetails from '../../routes/PlantDetails/PlantDetails';
 import EditPlant from '../../routes/EditPlant/EditPlant';
 import Context from '../../Context';
+import config from '../../config';
 
 
 class App extends React.Component  {
@@ -17,9 +18,18 @@ class App extends React.Component  {
   }
   
   componentDidMount(){
-    this.setState({
-      plants: dummyStore.plants,
+    fetch(config.API_PLANTS_ENDPOINT, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      }
+    }).then(response => response.json())
+    .then((plants) => {
+      this.setState({plants:plants});
+    }).catch((err) => {
+      console.error(err)
     })
+
   }
   
   
