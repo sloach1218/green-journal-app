@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './LandingPage.css';
 import ValidationError from '../../ValidationError';
+import AuthApiService from '../../services/auth-api-service';
 
 
 class LandingPage extends React.Component {
@@ -16,6 +17,7 @@ class LandingPage extends React.Component {
         value: "",
         touched:false
       },
+      error: null
     };
   }
   updateUsername(username) {
@@ -38,9 +40,25 @@ class LandingPage extends React.Component {
     }
   }
 
+  
+
   handleSubmit = ev => {
     ev.preventDefault()
-    console.log('submitted!')
+    this.setState({ error:null })
+    const { username, password } = ev.target
+
+    AuthApiService.postLogin({
+      user_name: username.value,
+      password: password.value,
+    })
+      .then(res => {
+        username.value = ' '
+        password.value = ' '
+        window.location.href = '/home'
+      })
+      .catch(res => {
+        this.setState({ error:res.error})
+      })
   }
 
 
