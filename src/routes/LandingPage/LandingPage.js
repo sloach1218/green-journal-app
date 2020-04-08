@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import './LandingPage.css';
 import ValidationError from '../../ValidationError';
+import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 
 
@@ -52,8 +53,9 @@ class LandingPage extends React.Component {
       password: password.value,
     })
       .then(res => {
-        username.value = ' '
-        password.value = ' '
+        username.value = ''
+        password.value = ''
+        TokenService.saveAuthToken(res.authToken)
         window.location.href = '/home'
       })
       .catch(res => {
@@ -77,7 +79,7 @@ class LandingPage extends React.Component {
         <section>
             <form className="login-form" onSubmit={e => this.handleSubmit(e)}>
               <legend>Already have an account?</legend>
-              <label for="username" >Username:</label>
+              <label htmlFor="username" >Username:</label>
               <input 
                   type="text"
                   name="username"
@@ -86,7 +88,7 @@ class LandingPage extends React.Component {
                   aria-label="username" 
                   aria-required="true" />
               {this.state.username.touched && (<ValidationError message={this.validateUsername()} />)}
-              <label for="password" >Password:</label>
+              <label htmlFor="password" >Password:</label>
               <input 
                   type="text" 
                   name="password" 

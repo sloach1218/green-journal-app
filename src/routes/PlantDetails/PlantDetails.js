@@ -8,16 +8,15 @@ import {getPlant} from '../../appHelpers'
 
 
 class PlantDetails extends React.Component {
+ 
+
   static contextType = PlantsContext
 
-  
   
   render() {
     
     const { plants = [] } = this.context;
     const plant = getPlant(plants, this.props.match.params.plantId)
-    console.log(plants)
-    console.log(plant)
 
     return (
         <div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
-import dummyStore from '../../dummyStore'
 import LandingPage from '../../routes/LandingPage/LandingPage';
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import HomePage from '../../routes/HomePage/HomePage';
