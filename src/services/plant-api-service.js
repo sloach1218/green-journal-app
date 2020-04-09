@@ -4,7 +4,7 @@ import TokenService from '../services/token-service'
 const PlantApiService = {
   
   postPlant(plant) {
-    console.log(JSON.stringify(plant))
+    
     return fetch(`${config.API_ENDPOINT}/plants`, {
       method: 'POST',
       headers: {
@@ -19,6 +19,15 @@ const PlantApiService = {
           : res.json()
       )
   },
+  imageUploader(plant){
+      const formData = new FormData();
+      formData.append('image', plant)
+      return fetch(`${config.API_ENDPOINT}/image-upload`, {
+        method: 'POST',
+        body: formData,
+      }).then(res => res.json())
+  }, 
 }
+    
 
 export default PlantApiService

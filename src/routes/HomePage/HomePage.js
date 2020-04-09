@@ -9,6 +9,8 @@ import PlantsContext from '../../Context'
 class HomePage extends React.Component {
   static contextType = PlantsContext
 
+  
+
   renderPlants() {
     const { plants = [] } = this.context;
     return plants.map(plant =>

@@ -42,6 +42,9 @@ class AddPlant extends React.Component {
         value: "",
         touched:false
       },
+      imageUploaded:{
+        value: ''
+      },
     };
   }
   updateName(name) {
@@ -123,21 +126,24 @@ class AddPlant extends React.Component {
   handleSubmit = ev => {
     ev.preventDefault()
 
-    const { name, type, description, sunlight, water, fertilize, repot, image  } = ev.target
-    
-    const imageFiller = image.value || 'https://live.staticflickr.com/65535/48245873492_100da3b527_b.jpg'
+    const { name, type, description, sunlight, water, fertilize, repot  } = ev.target
     
     this.setState({ error: null })
-    PlantApiService.postPlant({
-      name: name.value,
-      type: type.value,
-      description: description.value,
-      sunlight: sunlight.value,
-      water: water.value,
-      fertilize: fertilize.value,
-      repot: repot.value,
-      image: imageFiller,
-    })
+    PlantApiService.imageUploader(this.state.image.value)
+      .then((image) => {
+        const imageUploaded = image.imageUrl
+
+        return PlantApiService.postPlant({
+          name: name.value,
+          type: type.value,
+          description: description.value,
+          sunlight: sunlight.value,
+          water: water.value,
+          fertilize: fertilize.value,
+          repot: repot.value,
+          image: imageUploaded,
+        })
+      })
       .then(plant => {
         name.value = ''
         type.value = ''
@@ -151,8 +157,6 @@ class AddPlant extends React.Component {
       .catch(res => {
         this.setState({ error: res.error })
       })
-
-
   }
 
   render(){
@@ -160,7 +164,7 @@ class AddPlant extends React.Component {
       <div  className="addPlantPage">
         <Header />
         <Nav />
-        <form className='AddPlantForm' onSubmit={e => this.handleSubmit(e)}>
+        <form className='AddPlantForm' onSubmit={e => this.handleSubmit(e)} encType="multipart/form-data">
             <legend>Add a new plant</legend>
             <div className='name'>
               <label htmlFor='AddPlantForm__name'>
@@ -270,8 +274,9 @@ class AddPlant extends React.Component {
               <input
                 name='image'
                 type='file'
-                id='AddPlantForm__image'
-                onChange={e => this.updateImage(e.target.value)}
+                id='image'
+                required
+                onChange={e => this.updateImage(e.target.files[0])}
                 aria-label="image" 
                 aria-required="true"
                 />
