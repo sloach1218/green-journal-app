@@ -9,7 +9,9 @@ import PlantDetails from '../../routes/PlantDetails/PlantDetails';
 import EditPlant from '../../routes/EditPlant/EditPlant';
 import Context from '../../Context';
 import config from '../../config';
-import TokenService from '../../services/token-service'
+import TokenService from '../../services/token-service';
+import PrivateRoute from '../Utils/PrivateRoute';
+import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 
 
 
@@ -47,28 +49,28 @@ class App extends React.Component  {
         
         <Context.Provider value={contextValue}>
         <Switch>
-            <Route
+            <PublicOnlyRoute
                     exact
                     path={'/'}
                     component={LandingPage}
                   />
-            <Route
+            <PublicOnlyRoute
                     path={'/register'}
                     component={RegistrationPage}
                   />
-            <Route
+            <PrivateRoute
                     path={'/home'}
                     component={HomePage}
                   />
-            <Route
+            <PrivateRoute
                     path={'/add-plant'}
                     component={AddPlant}
                   />
-            <Route
+            <PrivateRoute
                     path={'/plant/:plantId'}
                     component={PlantDetails}
                   />
-            <Route
+            <PrivateRoute
                     path={'/edit-plant-details/:plantId'}
                     component={EditPlant}
                   />
