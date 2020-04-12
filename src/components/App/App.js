@@ -9,6 +9,8 @@ import PlantDetails from '../../routes/PlantDetails/PlantDetails';
 import EditPlant from '../../routes/EditPlant/EditPlant';
 import Context from '../../Context';
 import config from '../../config';
+import TokenService from '../../services/token-service'
+
 
 
 class App extends React.Component  {
@@ -21,6 +23,7 @@ class App extends React.Component  {
       method: 'GET',
       headers: {
         'content-type': 'application/json',
+        'authorization':`bearer ${TokenService.getAuthToken()}`,
       }
     }).then(response => response.json())
     .then((plants) => {
