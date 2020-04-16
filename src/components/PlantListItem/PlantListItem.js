@@ -8,7 +8,9 @@ export default class PlantListItem extends Component {
     
 
     return (
-      <Link to={`/plant/${plant.id}`} className='PlantListItem'>
+      <Link 
+          to={{pathname:`/plant/${plant.id}`, state: {id:plant.id}}} 
+          className='PlantListItem'>
         <div className='PlantListItem__container'>
             <div className="PlantListItemImage_container">
               <img src={plant.image} alt={plant.type} />

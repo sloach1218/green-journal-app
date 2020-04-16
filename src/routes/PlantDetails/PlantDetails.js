@@ -1,17 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './PlantDetails.css';
-import Header from '../../components/Header/Header'
-import Nav from '../../components/Nav/Nav'
-import PlantsContext from '../../Context'
-import {getPlant} from '../../appHelpers'
+import Header from '../../components/Header/Header';
+import Nav from '../../components/Nav/Nav';
+import PlantsContext from '../../Context';
+import {getPlant} from '../../appHelpers';
 
 
 class PlantDetails extends React.Component {
- 
-
   static contextType = PlantsContext
-
   
   render() {
     
@@ -34,7 +31,8 @@ class PlantDetails extends React.Component {
                       water: plant.water,
                       fertilize: plant.fertilize,
                       repot: plant.repot,
-                      id: plant.id
+                      id: plant.id,
+                      existingImage: plant.image,
                     }
                   }}
                   className='editBtn'

@@ -128,7 +128,6 @@ class AddPlant extends React.Component {
 
     const { name, type, description, sunlight, water, fertilize, repot  } = ev.target
     
-    this.setState({ error: null })
     PlantApiService.imageUploader(this.state.image.value)
       .then((image) => {
         const imageUploaded = image.imageUrl

@@ -5,14 +5,13 @@ import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import PlantsContext from '../../Context'
 import ValidationError from '../../ValidationError';
+import PlantApiService from '../../services/plant-api-service';
 
 
 
 
 class EditPlant extends React.Component {
   static contextType = PlantsContext
-  
-  
   
   constructor(props){
     super(props);
@@ -47,7 +46,7 @@ class EditPlant extends React.Component {
         touched:false
       },
       image:{
-        value: "",
+        value: plant.image,
         touched:false
       },
     };
@@ -127,10 +126,58 @@ class EditPlant extends React.Component {
     }
   }
 
-  handleSubmit = ev => {
-    ev.preventDefault()
-    console.log('submitted!')
+  handleSubmit = e => {
+    e.preventDefault()
+    const { plantId } = this.props.match.params
+    const { name, type, description, water, fertilize, repot } = e.target
+    const newPlant = {
+      id: Number(plantId),
+      name: name.value,
+      type: type.value,
+      description: description.value,
+      sunlight: this.state.sunlight.value,
+      water: water.value,
+      fertilize: fertilize.value,
+      repot: repot.value,
+      image: this.state.image.value,
+}
+    if (newPlant.image === undefined || newPlant.image === ""){
+      const image = this.props.location.state.existingImage
+      newPlant.image = image
+        PlantApiService.updatePlant(newPlant)
+        .then(
+          PlantApiService.getPlants()
+          .then(() => {
+            this.context.updatePlant(newPlant)
+          })
+        )
+        .then(() => {
+          this.props.history.push(`/plant/${plantId}`)
+        })
+        .catch(error => {
+          console.error(error)
+          this.setState({ error })
+        })
+    } else {
+      PlantApiService.imageUploader(this.state.image.value)
+        .then((image) => {
+          const imageUploaded = image.imageUrl
+          newPlant.image = imageUploaded;
+
+          return PlantApiService.updatePlant(newPlant)
+        })
+        .then(() => {
+          this.context.updatePlant(newPlant)
+          this.props.history.push(`/plant/${plantId}`)
+        })
+        .catch(res => {
+          this.setState({ error: res.error })
+        })
+    }
   }
+  handleClickCancel = () => {
+    this.props.history.push('/')
+  };
 
   render(){
     const plant = this.props.location.state;
@@ -254,11 +301,14 @@ class EditPlant extends React.Component {
                 name='image'
                 type='file'
                 id='AddPlantForm__image'
-                onChange={e => this.updateImage(e.target.value)}
+                onChange={e => this.updateImage(e.target.files[0])}
                 aria-label="image" 
                 aria-required="true"
                 />
             </div>
+            <button type='button' onClick={this.handleClickCancel}>
+              Cancel
+            </button>
             <button type='submit'>Update Plant Details</button>
   
         </form>
