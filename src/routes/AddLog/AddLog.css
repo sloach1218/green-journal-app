@@ -1,0 +1,21 @@
+.addPlantPage {
+    text-align: center;
+}
+.addPlantPage form{
+    display: inline-block;
+    text-align: left;
+    margin-top: 20px;
+  }
+.addPlantPage button, .addPlantPage input, .addPlantPage textarea , .addPlantPage select  {
+    width: 100%;
+    border: 1px solid grey;
+    padding: 6px;
+    margin-bottom: 5px;
+}
+#AddPlantForm__water, #AddPlantForm__fertilize, #AddPlantForm__repot {
+    display: inline-block;
+    width: auto;
+}
+.addPlantPage textarea{
+    min-height: 75px;
+}

@@ -8,3 +8,11 @@
 .Plant__details a{
   float:right;
 }
+.Plant__details section ul li{
+  list-style: none;
+  margin: 20px;
+}
+.Plant__details section ul li img{
+  max-width: 100px;
+  max-height: 100px;
+}

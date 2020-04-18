@@ -5,5 +5,7 @@ const PlantsContext = React.createContext({
   error: null,
   updatePlants: () => {},
   updatePlant: () => {},
+  setLogs: () => {},
+  deleteNote: () => {},
 })
 export default PlantsContext
