@@ -111,7 +111,7 @@ class RegistrationPage extends React.Component {
               </label>
               <input
                 name='password'
-                type='text'
+                type='password'
                 required
                 id='RegistrationForm__password'
                 onChange={e => this.updatePassword(e.target.value)}
@@ -125,7 +125,7 @@ class RegistrationPage extends React.Component {
               </label>
               <input
                 name='reenterPassword'
-                type='text'
+                type='password'
                 required
                 id='RegistrationForm__reenterPassword'
                 onChange={e => this.updateReenterPassword(e.target.value)}

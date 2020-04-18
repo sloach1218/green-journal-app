@@ -90,7 +90,7 @@ class LandingPage extends React.Component {
               {this.state.username.touched && (<ValidationError message={this.validateUsername()} />)}
               <label htmlFor="password" >Password:</label>
               <input 
-                  type="text" 
+                  type="password" 
                   name="password" 
                   id="password"
                   onChange={e => this.updatePassword(e.target.value)}
