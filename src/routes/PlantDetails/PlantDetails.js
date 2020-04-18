@@ -17,16 +17,27 @@ class PlantDetails extends React.Component {
     PlantApiService.getPlantLogs(plantId)
       .then((logs) => this.context.setLogs(logs))
       .catch(this.context.setError)
-
   }
   
-  deleteLog(id, cb) {
-    const logId ={
-      log_id: id
-    }
+  deleteLog(id) {
+    const logId = { log_id: id }
     PlantApiService.deleteLog(logId)
       .then(() => {
         this.context.deleteLog(logId)
+      })
+      .catch(error => {
+        console.error(error)
+      })
+  }
+
+  deletePlant(id) {
+    const plantId ={
+      plant_id: id
+    }
+    PlantApiService.deletePlant(plantId)
+      .then(() => {
+        window.location.href = '/home'
+
       })
       .catch(error => {
         console.error(error)
@@ -40,15 +51,18 @@ class PlantDetails extends React.Component {
     const plant = getPlant(plants, this.props.match.params.plantId) || {};
     const { logs = [] } = this.context;
     
-    
-
-
-
     return (
         <div>
           <Header />
           <Nav />
           <main className='Plant__details'>
+              <button
+                  className='PlantDeleteBtn'
+                  onClick={() =>
+                    this.deletePlant(plant.id)
+                  }
+                  >Delete Plant
+              </button>
               <Link 
                   to={{
                     pathname:`/edit-plant-details/${plant.id}`,
@@ -66,6 +80,7 @@ class PlantDetails extends React.Component {
                   }}
                   className='editBtn'
                   >Edit Details</Link>
+              
               <img src={plant.image} alt={plant.type}/>
               <h2 className='Plant__heading'>{plant.name}</h2>
               <p><em>{plant.type}</em></p>

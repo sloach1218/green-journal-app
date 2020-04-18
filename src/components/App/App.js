@@ -52,6 +52,11 @@ class App extends React.Component  {
         logs: this.state.logs.filter(log => log.id !== logId.log_id)
     });
   };
+  deletePlant = plantId => {
+    this.setState({
+        plants: this.state.plants.filter(plant => plant.id !== plantId.plant_id)
+    });
+  };
   
   
   
@@ -61,6 +66,7 @@ class App extends React.Component  {
       logs: this.state.logs,
       updatePlants: this.updatePlants,
       updatePlant: this.updatePlant,
+      deletePlant: this.deletePlant,
       setLogs: this.setLogs,
       deleteLog: this.deleteLog,
     }

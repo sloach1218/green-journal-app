@@ -49,6 +49,22 @@ const PlantApiService = {
           return res.json().then(error => Promise.reject(error))
       })
   },
+  deletePlant(plantId){
+    return fetch(`${config.API_ENDPOINT}/plants`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'authorization':`bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify(plantId),
+    })
+    .then(res => {
+      if (!res.ok){
+        return res.json().then(e => Promise.reject(e))
+      }
+      return
+    })
+  },
   getPlantLogs(plantId) {
     return fetch(`${config.API_ENDPOINT}/plants/${plantId}/logs`, {
       headers: {
