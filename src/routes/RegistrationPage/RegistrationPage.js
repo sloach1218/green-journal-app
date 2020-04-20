@@ -27,6 +27,7 @@ class RegistrationPage extends React.Component {
         value: "",
         touched:false
       },
+      error:null,
     };
   }
   updateUsername(username) {
@@ -79,7 +80,6 @@ class RegistrationPage extends React.Component {
         password.value = ''
         const { history } = this.props
         history.push('/')
-        //window.location.href = '/home'
       })
       .catch(res => {
         this.setState({ error: res.error })
@@ -87,10 +87,14 @@ class RegistrationPage extends React.Component {
   }
 
   render(){
+    const { error } = this.state
     return (
       <div className="registrationPage"> 
         <Header />
         <form className='RegistrationForm'  onSubmit={e => this.handleSubmit(e)}>
+            <div className='RegistrationForm__error' role='alert'>
+              {error && <p>{error.message}</p>}
+            </div>
             <div className='username'>
               <label htmlFor='RegistrationForm__username'>
                 Username: 
@@ -117,6 +121,7 @@ class RegistrationPage extends React.Component {
                 onChange={e => this.updatePassword(e.target.value)}
                 aria-label="password" 
                 aria-required="true" />
+              <p>Password must be at least 8 characters and contain one upper case, lower case, number and special character.</p>
               {this.state.password.touched && (<ValidationError message={this.validatePassword()} />)}
             </div>
             <div className='reenterPassword'>

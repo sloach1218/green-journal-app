@@ -4,11 +4,15 @@
 .registrationPage form{
     display: inline-block;
     text-align: left;
-    margin-top: 20px;
+    margin: 20px;
   }
 .registrationPage button, .registrationPage input {
     width: 100%;
     border: 1px solid grey;
     padding: 6px;
     margin-bottom: 5px;
+}
+.registrationPage p{
+    font-size:12px;
+    margin-bottom: 10px;
 }
