@@ -96,6 +96,7 @@ class AddLog extends React.Component {
                 id='image'
                 onChange={e => this.updateImage(e.target.files[0])}
                 aria-label="image" 
+                required
                 />
             </div>
             <button type='submit'>Add Log</button>
