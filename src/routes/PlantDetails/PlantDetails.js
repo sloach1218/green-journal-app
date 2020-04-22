@@ -105,7 +105,7 @@ class PlantDetails extends React.Component {
                   <li key={log.id} className='plantLog'>
                     <p>{log.date_created.slice(0,10)}</p>
                     <p className='logText'>{log.text}</p>
-                    <img src={log.image} className='logImage' alt="logUpdateImage" />
+                    {log.image && <img src={log.image} className='logImage' alt="logUpdateImage" />}
                     <button
                       className='LogDeleteBtn'
                       onClick={() =>

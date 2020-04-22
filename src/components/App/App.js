@@ -11,8 +11,6 @@ import AddLog from '../../routes/AddLog/AddLog';
 import Context from '../../Context';
 import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
-import PlantApiService from '../../services/plant-api-service';
-
 
 
 class App extends React.Component  {
@@ -20,23 +18,12 @@ class App extends React.Component  {
     plants: [],
     logs: [],
   }
-  
-  componentDidMount(){
-    PlantApiService.getPlants()
-      .then((plants) => {
-        this.setState({plants:plants});
-      }).catch((err) => {
-        console.error(err)
-      })
-
-  }
 
   updatePlants = plants => {
     this.setState({ plants: plants })
   }
 
   updatePlant = updatedPlant => {
-    
     
     this.setState({
       plants: this.state.plants.map(plant => 

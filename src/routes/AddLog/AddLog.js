@@ -42,10 +42,26 @@ class AddLog extends React.Component {
   handleSubmit = ev => {
     ev.preventDefault()
 
-    const { text } = ev.target
+    const { text, image } = ev.target
     const plantId = this.props.location.state.id
     
-    PlantApiService.imageUploader(this.state.image.value)
+    
+    if (image.value === undefined || image.value === ""){
+        PlantApiService.postLog({
+          text: text.value,
+          image: '',
+          plant_id: plantId
+        })
+      
+      .then(() => {
+        text.value = ''
+        this.props.history.push(`/plant/${plantId}`)
+      })
+      .catch(res => {
+        this.setState({ error: res.error })
+      })
+    } else {
+      PlantApiService.imageUploader(this.state.image.value)
       .then((image) => {
         const imageUploaded = image.imageUrl
 
@@ -62,6 +78,10 @@ class AddLog extends React.Component {
       .catch(res => {
         this.setState({ error: res.error })
       })
+    }
+
+
+    
   }
 
   render(){
@@ -88,7 +108,7 @@ class AddLog extends React.Component {
             </div>
             <div className='updateImg'>
               <label htmlFor='AddPlantForm__profileImg'>
-                Select an image: 
+                Select an image (optional): 
               </label>
               <input
                 name='image'
@@ -96,7 +116,7 @@ class AddLog extends React.Component {
                 id='image'
                 onChange={e => this.updateImage(e.target.files[0])}
                 aria-label="image" 
-                required
+              
                 />
             </div>
             <button type='submit'>Add Log</button>
