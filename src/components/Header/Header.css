@@ -1,6 +1,20 @@
 header{
   width:100%;
-  background-color: whitesmoke;
-  color: darkolivegreen;
+  background-color: #72aa00;
+  background-image: linear-gradient(to right, #019c7c , #61ac27);
+  color: #ffffff;
   padding: 10px;
+  position: fixed;
+  z-index: 1;
+}
+header h1{
+  text-align: center;
+  font-size: 26px;
+}
+
+@media only screen and (min-width: 600px) {
+  header h1{
+    float: left;
+    margin-left:12px;
+  }
 }

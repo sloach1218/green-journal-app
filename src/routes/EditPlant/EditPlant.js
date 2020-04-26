@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './EditPlant.css';
 import Header from '../../components/Header/Header';
 import Nav from '../../components/Nav/Nav';
@@ -176,19 +175,18 @@ class EditPlant extends React.Component {
     }
   }
   handleClickCancel = () => {
-    this.props.history.push('/')
+    const plantId = this.props.location.state.id
+    this.props.history.push(`/plant/${plantId}`)
   };
 
   render(){
-    const plant = this.props.location.state;
 
     return (
       <div  className="editPlantPage">
         <Header />
         <Nav />
-        <Link to={`/plant/${plant.id}`} className='BacktoPlant'>Back to Plant Details</Link>
         <form className='editPlantForm' onSubmit={e => this.handleSubmit(e)}>
-            <legend>Update your plant's details</legend>
+            <legend>Edit your plant's details</legend>
             <div className='name'>
               <label htmlFor='editPlantForm__name'>
                 Name: 
@@ -306,7 +304,7 @@ class EditPlant extends React.Component {
                 aria-required="true"
                 />
             </div>
-            <button type='button' onClick={this.handleClickCancel}>
+            <button type='button' onClick={this.handleClickCancel} className="editPlantCancelBtn">
               Cancel
             </button>
             <button type='submit'>Update Plant Details</button>

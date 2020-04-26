@@ -83,6 +83,7 @@ class RegistrationPage extends React.Component {
       })
       .catch(res => {
         this.setState({ error: res.error })
+        console.log(this.state.error)
       })
   }
 
@@ -93,8 +94,9 @@ class RegistrationPage extends React.Component {
         <Header />
         <form className='RegistrationForm'  onSubmit={e => this.handleSubmit(e)}>
             <div className='RegistrationForm__error' role='alert'>
-              {error && <p>{error.message}</p>}
+              {error && <p>{error}</p>}
             </div>
+            <legend>Create an Account</legend>
             <div className='username'>
               <label htmlFor='RegistrationForm__username'>
                 Username: 

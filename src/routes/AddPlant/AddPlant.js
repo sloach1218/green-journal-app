@@ -211,7 +211,7 @@ class AddPlant extends React.Component {
               <label htmlFor='AddPlantForm__sunlight'>
                 Sunlight Preferred: 
               </label>
-              <select name='sunlight' value={this.state.sunlight.value} onChange={e => this.updateSunlight(e.target.value)}>
+              <select name='sunlight' value={this.state.sunlight.value} onChange={e => this.updateSunlight(e.target.value)} className="sunlightSelect">
                   <option value="Low" key="Low">Low/full shade</option>
                   <option value="Partial" key="Partial">Partial sunlight and shade</option>
                   <option value="Bright" key="Bright">Bright without direct sun</option>

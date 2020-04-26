@@ -6,6 +6,7 @@ import TokenService from '../../services/token-service';
 import AuthApiService from '../../services/auth-api-service';
 
 
+
 class LandingPage extends React.Component {
   constructor(props){
     super(props);
@@ -71,11 +72,14 @@ class LandingPage extends React.Component {
           <h1>The Green Journal</h1>
           <h2>Plant parenting made easy.</h2>
         </header>
-        <section>
-          <h3>Your plant's diary</h3>
-          <p>The Green Journal helps you keep track of your plant babies. Create a profile for each plant that saves care instructions, shows reminders and logs progress as they grow.</p>
+        
+        <section className="appDescrip">
+          
+          <h3>Your Plant's Diary</h3>
+          <p>The Green Journal helps you keep track of your plant babies and document their big moments. Create a profile for each plant that saves care instructions and add updates as they grow.</p>
           <Link to={`/register`} className='registerBtn'>Create an Account</Link>
         </section>
+        
         <section>
             <form className="login-form" onSubmit={e => this.handleSubmit(e)}>
               <legend>Already have an account?</legend>
@@ -100,7 +104,13 @@ class LandingPage extends React.Component {
               <button type="submit" disabled={this.validateUsername() || this.validatePassword()}>Login</button>
             </form>
         </section>
+        <section>
+          <p>If you would like to try a demo first, please login above using the following credentials:</p>
+          <p>username: demo_user</p>
+          <p>password: password</p>
+        </section>
       </main>
+
     );
   }
 }

@@ -7,3 +7,25 @@
 label{
   display: block;;
 }
+form legend{
+  text-transform: capitalize;
+  font-size: 24px;
+  color: #01856a;
+  font-weight: 500;
+}
+form button{
+  background-color: #01856a;
+    color: white;
+    font-size: 16px;
+    padding: 8px;
+    font-weight: 600;
+    margin-top:5px;
+}
+form button:hover{
+  background-color: #006d57;
+  
+  
+}
+form button:hover{
+  cursor: pointer;
+}

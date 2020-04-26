@@ -86,10 +86,10 @@ class AddLog extends React.Component {
 
   render(){
     return (
-      <div  className="addPlantPage">
+      <div  className="addLogPage">
         <Header />
         <Nav />
-        <form className='AddPlantForm' onSubmit={e => this.handleSubmit(e)} encType="multipart/form-data">
+        <form className='AddLogForm' onSubmit={e => this.handleSubmit(e)} encType="multipart/form-data">
             <legend>Add a new update</legend>
             
             <div className='text'>
@@ -107,7 +107,7 @@ class AddLog extends React.Component {
                 {this.state.text.touched && (<ValidationError message={this.validateText()} />)}
             </div>
             <div className='updateImg'>
-              <label htmlFor='AddPlantForm__profileImg'>
+              <label htmlFor='AddLogForm__profileImg'>
                 Select an image (optional): 
               </label>
               <input

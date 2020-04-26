@@ -1,21 +1,34 @@
-.addPlantPage {
+.addLogPage {
     text-align: center;
 }
-.addPlantPage form{
+.addLogPage form{
     display: inline-block;
     text-align: left;
-    margin-top: 20px;
+    margin-top: 160px;
   }
-.addPlantPage button, .addPlantPage input, .addPlantPage textarea , .addPlantPage select  {
+ .addLogPage input, .addLogPage textarea , .addLogPage select  {
     width: 100%;
     border: 1px solid grey;
     padding: 6px;
     margin-bottom: 5px;
 }
-#AddPlantForm__water, #AddPlantForm__fertilize, #AddPlantForm__repot {
+.addLogPage button{
+    border:none;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 4px;
+}
+#AddLogForm__water, #AddLogForm__fertilize, #AddLogForm__repot {
     display: inline-block;
     width: auto;
 }
-.addPlantPage textarea{
+.addLogPage textarea{
     min-height: 75px;
 }
+
+
+@media only screen and (min-width: 600px) {
+    .addLogPage form{
+        margin-top: 80px;
+      }
+  }

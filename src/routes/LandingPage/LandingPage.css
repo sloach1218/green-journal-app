@@ -3,36 +3,71 @@
 }
 .landingPageMain header{
   padding: 30px;
+  position: relative;
+  /*background-color: #00994C, #61ac27, #73b387, #019c7c, #009f00;*/
+  background-color: #009f00;
+  background-image: linear-gradient(to right, #019c7c , #61ac27);
+  color:white;
   
+}
+.landingPageMain header h1{
+  font-size: 30px;
+  float:none;
+  margin-left: 0;
+  
+}
+.landingPageMain header h2{
+  font-size: 18px;
+  color: lightgoldenrodyellow;
+  margin: -5px 0 10px 0;
+  
+}
+.landingPageMain .appDescrip h3{
+  color:#00743a;
+  font-size:22px;
 }
 section {
   padding: 30px;
 }
-section:last-of-type {
+section:first-of-type {
   background-color: whitesmoke;
 }
 .landingPageMain form{
   display: inline-block;
   text-align: left;
 }
-.landingPageMain button{
-  display: block;
-  background-color: darkolivegreen;
-  padding: 10px;
-  margin: 0 auto;
-  
-}
+
 .landingPageMain form input, .landingPageMain form button{
   width:100%;
   border: 1px solid grey;
-  padding: 6px;
+  padding: 8px;
   margin-bottom: 5px;
 }
-.landingPageMain .registerBtn{
-  background-color: darkolivegreen;
-  padding: 8px 12px;
-  display: inline-block;
-  margin-top: 10px;
-  text-decoration: none;
-  color: black;
+.landingPageMain form button{
+  display: block;
+  background-color: #01856a;
+  padding: 10px;
+  margin: 6px auto;
+  border:none;
+  
 }
+.landingPageMain form button:hover{
+  background-color: #006d57;
+  
+  
+}
+.landingPageMain .registerBtn{
+  background-color: #00743a;
+  padding: 10px 20px;
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+}
+.landingPageMain .registerBtn:hover{
+  background-color: #61ac27;
+}
+
+
+

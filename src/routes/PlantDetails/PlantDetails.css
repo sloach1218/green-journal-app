@@ -1,22 +1,152 @@
+.plantDetailsCont{
+  max-width:950px;
+  margin: 0 auto;
+}
 .Plant__details{
   padding: 20px;
+  padding-top: 148px;
+  max-width: 600px;
+  overflow: auto;
 }
 .Plant__details img{
-  max-height: 300px;
-  max-width: 300px;
+  width:100%;
+  max-height: 600px;
+  max-width: 600px;
+}
+.Plant__details h2{
+  color: #019c7c;
+  font-size: 28px;
+}
+.Plant__details .plantType{
+  margin-top: -6px;
+  font-size:18px;
+}
+.Plant__details .plantDescrip{
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.Plant__details .detailsIcon{
+  margin: 0 5px 0 2px;
+}
+.Plant__details .detailsIconSun{
+  margin: 0 4px 0 0;
+}
+
+.Plant__details .planterIcon{
+  width: 12px;
+  margin: 0 6px 0 1px;
+}
+
+section.plantUpdates ul li{
+  list-style: none;
+  padding: 20px;
+  margin: 0;
+  background-color: whitesmoke;
+  border-top: 1px solid #72aa00;
+}
+section.plantUpdates ul li img{
+  max-width: 100px;
+  max-height: 100px;
+  cursor: pointer;
+}
+section.plantUpdates ul li img:hover{
+  opacity: .9;
+}
+section.plantUpdates h3{
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+section.plantUpdates .addUpdateBtn{
+  float: right;
+  font-size: 14px;
+  color: #019c7c;
+  margin-top: 4px;
+}
+section.plantUpdates p{
+  margin: 4px 0;
+  font-size: 18px;
+}
+.PlantDeleteBtn{
+  margin: 15px 10px 0 20px;
+  color: darkslategrey;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.LogDeleteBtn {
+  float:right;
+  margin: -20px -5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: darkslategrey;
+}
+.Plant__details a.editBtn{
+  float: left;
+  font-size: 14px;
+  margin-top: 12px;
+  color: #019c7c;
 }
 .Plant__details a{
   float:right;
 }
-.Plant__details section ul li{
-  list-style: none;
-  margin: 20px;
+section.plantUpdates p.logDate{
+  font-size: 14px;
 }
-.Plant__details section ul li img{
-  max-width: 100px;
-  max-height: 100px;
+
+.imageModalCont{
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255,255, .7);
+  top:0;
 }
-.LogDeleteBtn, .PlantDeleteBtn{
+.imageModalCont img {
+  max-width:90%;
+  max-height: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+.imageModalCont .modalIcon{
   float:right;
-  margin: 0 10px;
+  margin: 20px;
+  font-size:36px;
+  color:#6d6d6d;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) {
+  .Plant__details{
+    padding-top: 76px;
+    
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .Plant__details{
+    float:left;
+    padding-top: 76px;
+    max-width: 600px;
+  }
+  section.plantUpdates {
+    float: right;
+    padding-top: 148px;
+    padding-top: 75px;
+    max-height: 200vh;
+    overflow: scroll;
+    width: 340px;
+    
+  }
+  section.plantUpdates ul li {
+    width: 290px;
+}
+  section.plantUpdates ul li img{
+    max-width: 200px;
+    max-height: 200px;
+  }
 }

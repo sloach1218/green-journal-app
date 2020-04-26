@@ -1,13 +1,56 @@
 .PlantListItem__container{
-    margin: 20px;
+    margin: 20px 10px;
     padding:5px;
-    background-color: lightgreen;
 }
+.gradientWrap{
+    background-image: linear-gradient(to right, #019c7c , #61ac27);
+    padding: 5px;
+    border-radius: 105px;
+}
+
 .PlantListItemImage_container{
-    width: 200px;
-    height: 200px;
+    width: 130px;
+    height: 130px;
     overflow: hidden;
+    position: relative;
+    border-radius: 105px;
 }
 .PlantListItemImage_container img{
     height:100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+.PlantListItem:hover .PlantListItemImage_container img{
+    opacity: .80;
+}
+
+.PlantListItem{
+    text-decoration: none;
+    text-align: center;
+    color:#019c7c;
+}
+.PlantListItem:hover{
+    color:#006d57;
+}
+.PlantListItem h2{
+    font-size: 20px;
+    margin-top: 5px;
+    max-width: 130px;
+    max-height: 30px;
+    overflow: hidden;
+}
+@media only screen and (min-width: 950px) {
+    .PlantListItemImage_container{
+        width: 185px;
+        height: 185px;
+        
+        
+    }
+    .PlantListItem h2{
+        max-width: 185px;
+        font-size: 22px;
+    }
 }

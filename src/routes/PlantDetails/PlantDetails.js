@@ -6,18 +6,39 @@ import Nav from '../../components/Nav/Nav';
 import PlantsContext from '../../Context';
 import {getPlant} from '../../appHelpers';
 import PlantApiService from '../../services/plant-api-service';
+import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faTint, faPencilAlt, faTrash, faEdit, faTimes, faPumpSoap } from '@fortawesome/free-solid-svg-icons';
+import planterIcon from '../../images/planterIcon.png'
 
 
 class PlantDetails extends React.Component {
   static contextType = PlantsContext
 
+  state= {
+    showModal: false,
+    modalImg: null,
+  }
+
+  
   componentDidMount() {
     const { plantId } = this.props.match.params
     
+    PlantApiService.getPlants()
+      .then((plants) => {
+        this.context.updatePlants(plants)
+      }).catch((err) => {
+        console.error(err)
+      })
+
+
     PlantApiService.getPlantLogs(plantId)
       .then((logs) => this.context.setLogs(logs))
       .catch(this.context.setError)
+
+      
   }
+  
   
   deleteLog(id) {
     const logId = { log_id: id }
@@ -44,25 +65,38 @@ class PlantDetails extends React.Component {
       })
   }
 
+  openModal(img){
+    this.setState({showModal:true, modalImg:img})
+  }
+  hideModal(){
+    this.setState({showModal:false})
+  }
+
   
   render() {
     
     const { plants = [] } = this.context;
     const plant = getPlant(plants, this.props.match.params.plantId) || {};
+    
     const { logs = [] } = this.context;
     
     return (
         <div>
           <Header />
           <Nav />
+          <div className="plantDetailsCont">
           <main className='Plant__details'>
-              <button
-                  className='PlantDeleteBtn'
-                  onClick={() =>
-                    this.deletePlant(plant.id)
-                  }
-                  >Delete Plant
-              </button>
+              
+              
+              <img src={plant.image} alt={plant.type}/>
+              <h2 className='Plant__heading'>{plant.name}</h2>
+              <p className="plantType"><em>{plant.type}</em></p>
+              <p className="plantDescrip">{plant.description}</p>
+              <p><FontAwesomeIcon icon={faSun} className="detailsIconSun"/> {plant.sunlight} sunlight</p>
+              <p><FontAwesomeIcon icon={faTint} className="detailsIcon"/> water every {plant.water} days</p>
+              <p><FontAwesomeIcon icon={faPumpSoap} className="detailsIcon"/> fertilize every {plant.fertilize} weeks</p>
+              <p><img src={planterIcon} className="planterIcon" alt="planter icon"/> repot every {plant.repot} months</p>
+              
               <Link 
                   to={{
                     pathname:`/edit-plant-details/${plant.id}`,
@@ -79,18 +113,17 @@ class PlantDetails extends React.Component {
                     }
                   }}
                   className='editBtn'
-                  >Edit Details</Link>
-              
-              <img src={plant.image} alt={plant.type}/>
-              <h2 className='Plant__heading'>{plant.name}</h2>
-              <p><em>{plant.type}</em></p>
-              <p>{plant.description}</p>
-              <p>Sunlight preferred: {plant.sunlight}</p>
-              <p>Water every {plant.water} days</p>
-              <p>Fertilize every {plant.fertilize} weeks</p>
-              <p>Repot every {plant.repot} months</p>
-              <section>
-                <h3>Plant Updates</h3>
+                  ><FontAwesomeIcon icon={faEdit} className="detailsIcon"/> Edit Details</Link>
+              <button
+                  className='PlantDeleteBtn'
+                  onClick={() =>
+                    this.deletePlant(plant.id)
+                  }
+                  ><FontAwesomeIcon icon={faTrash} className="detailsIcon"/> Delete Plant
+              </button>
+          </main>
+          <section className="plantUpdates">
+                <h3>Updates</h3>
                 <Link 
                   to={{
                     pathname:`/add-log/${plant.id}`,
@@ -99,27 +132,29 @@ class PlantDetails extends React.Component {
                     }
                   }}
                   className='addUpdateBtn'
-                  >Add New Update</Link>
+                  ><FontAwesomeIcon icon={faPencilAlt} className="detailsIcon"/> Add Update</Link>
                 <ul>
                 {logs.map(log =>
                   <li key={log.id} className='plantLog'>
-                    <p>{log.date_created.slice(0,10)}</p>
+                    
                     <p className='logText'>{log.text}</p>
-                    {log.image && <img src={log.image} className='logImage' alt="logUpdateImage" />}
+                    {log.image && <img src={log.image} className='logImage' alt="logUpdateImage" onClick={() => this.openModal(log.image)}/>}
+                    <p className="logDate"><em>{moment(log.date_created.slice(0,10)).format('MM/DD/YYYY')}</em></p>
                     <button
                       className='LogDeleteBtn'
                       onClick={() =>
                         this.deleteLog(log.id)
                       }
                     >
-                      Delete
+                      <FontAwesomeIcon icon={faTrash} className="detailsIcon"/> Delete
                     </button>
                     
                   </li>
                 )}
                 </ul>
               </section>
-          </main>
+              </div>
+              {this.state.showModal && <div className='imageModalCont' onClick={() => this.hideModal()}><FontAwesomeIcon icon={faTimes} className="modalIcon"/><img src={this.state.modalImg} alt="modalImg"/></div>}
         </div>
       
     )

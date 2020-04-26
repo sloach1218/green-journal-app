@@ -12,11 +12,14 @@ export default class PlantListItem extends Component {
           to={{pathname:`/plant/${plant.id}`, state: {id:plant.id}}} 
           className='PlantListItem'>
         <div className='PlantListItem__container'>
-            <div className="PlantListItemImage_container">
-              <img src={plant.image} alt={plant.type} />
+            <div className="gradientWrap">
+              <div className="PlantListItemImage_container">
+                <img src={plant.image} alt={plant.type} />
+              </div>
             </div>
+            
             <h2 className='PlantListItem__heading'>{plant.name}</h2>
-            <p><em>{plant.type}</em></p>
+            
         </div>
       </Link>
     )

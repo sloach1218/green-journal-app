@@ -4,13 +4,19 @@
 .editPlantPage form{
     display: inline-block;
     text-align: left;
-    margin-top: 20px;
+    margin: 140px 0 60px 0;
   }
-.editPlantPage button, .editPlantPage input, .editPlantPage textarea , .editPlantPage select  {
+ .editPlantPage input, .editPlantPage textarea , .editPlantPage select  {
     width: 100%;
     border: 1px solid grey;
     padding: 6px;
     margin-bottom: 5px;
+}
+.editPlantPage button{
+    border:none;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 4px;
 }
 #editPlantForm__water, #editPlantForm__fertilize, #editPlantForm__repot {
     display: inline-block;
@@ -21,5 +27,18 @@
 }
 .editPlantPage .BacktoPlant{
     display: block;
-    margin-top: 5px;
+    
 }
+.editPlantPage button.editPlantCancelBtn{
+    background-color: lightgray;
+    color: rgb(48, 48, 48);
+}
+
+
+
+@media only screen and (min-width: 600px) {
+    .editPlantPage form{
+        
+        margin: 80px 0 60px 0;
+      }
+  }

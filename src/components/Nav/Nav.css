@@ -1,9 +1,55 @@
-nav{
+nav.mainNav{
   width:100%;
-  background-color: lightgray;
-  padding: 10px;
+  background-color: whitesmoke;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  margin-top:56px;
+  z-index: 1;
+}
+nav .navBtnCont{
+  text-align: center;
 }
 
 nav a{
-  padding:5px;
+  padding:0 5px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #019c7c;
+  display: block;
 }
+nav a:hover, nav a:hover .navIcon{
+  color: #006d57;
+}
+nav .navIcon{
+  color: #019c7c;
+  font-size: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+
+@media only screen and (min-width: 600px) {
+  nav.mainNav{
+    width: 300px;
+    top: 0;
+    position: fixed;
+    right: 0;
+    margin-top: 0;
+    background-color: transparent;
+    color:white;
+    height: 50px;
+    padding: 8px;
+  }
+  nav.mainNav a{
+    color:white;
+  }
+  nav .navIcon{
+    color:white;
+  }
+  nav a:hover, nav a:hover .navIcon{
+    color: lightgoldenrodyellow;
+  }
+}
+
