@@ -16,7 +16,9 @@
     border-radius: 105px;
 }
 .PlantListItemImage_container img{
-    height:100%;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -48,6 +50,10 @@
         height: 185px;
         
         
+    }
+    .PlantListItemImage_container img{
+        width: 185px;
+        height: 185px;
     }
     .PlantListItem h2{
         max-width: 185px;

@@ -9,9 +9,9 @@
   overflow: auto;
 }
 .Plant__details img{
+  max-height: 400px;
   width:100%;
-  max-height: 600px;
-  max-width: 600px;
+  object-fit: cover;
 }
 .Plant__details h2{
   color: #019c7c;
@@ -134,6 +134,12 @@ section.plantUpdates p.logDate{
     float:left;
     padding-top: 76px;
     max-width: 600px;
+  }
+  .Plant__details img{
+    max-height: 400px;
+    max-width: 600px;
+    object-fit: contain;
+    object-position: left;
   }
   section.plantUpdates {
     float: right;
