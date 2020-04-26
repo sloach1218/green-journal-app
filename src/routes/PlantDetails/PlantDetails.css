@@ -102,6 +102,7 @@ section.plantUpdates p.logDate{
   height: 100vh;
   background-color: rgba(255, 255,255, .7);
   top:0;
+  z-index: 2;
 }
 .imageModalCont img {
   max-width:90%;
@@ -125,6 +126,7 @@ section.plantUpdates p.logDate{
     padding-top: 76px;
     
   }
+  
 }
 
 @media only screen and (min-width: 950px) {
@@ -148,5 +150,9 @@ section.plantUpdates p.logDate{
   section.plantUpdates ul li img{
     max-width: 200px;
     max-height: 200px;
+  }
+  .imageModalCont img {
+    max-width:80%;
+    max-height: 80%;
   }
 }
