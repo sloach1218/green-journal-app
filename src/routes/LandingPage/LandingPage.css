@@ -4,7 +4,6 @@
 .landingPageMain header{
   padding: 30px;
   position: relative;
-  /*background-color: #00994C, #61ac27, #73b387, #019c7c, #009f00;*/
   background-color: #009f00;
   background-image: linear-gradient(to right, #019c7c , #61ac27);
   color:white;
