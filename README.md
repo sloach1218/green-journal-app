@@ -22,7 +22,7 @@ First, create a plant profile with basic care instructions:
 
 Next, add exciting updates about your plant as it grows:
 
-![Plants Page](src/images/addplantscreenshot.png)
+![Plants Page](src/images/addupdatescreenshot.png)
 
 
 Then, come back any time to review/update care details and relive your plant's big moments:
